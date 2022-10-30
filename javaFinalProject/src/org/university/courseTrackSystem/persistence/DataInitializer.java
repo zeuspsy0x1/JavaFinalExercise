@@ -23,95 +23,81 @@ public class DataInitializer {
     private Student newStudent9 = new Student("Ichika", 19);
     private Student newStudent10 = new Student("Lala", 20);
 
-    private ArrayList<Student> listOfInitialStudents = new ArrayList<Student>(){{
-        listOfInitialStudents.add(newStudent1);
-        listOfInitialStudents.add(newStudent2);
-        listOfInitialStudents.add(newStudent3);
-        listOfInitialStudents.add(newStudent4);
-        listOfInitialStudents.add(newStudent5);
-        listOfInitialStudents.add(newStudent6);
-        listOfInitialStudents.add(newStudent7);
-        listOfInitialStudents.add(newStudent8);
-        listOfInitialStudents.add(newStudent9);
-        listOfInitialStudents.add(newStudent10);
-    }};
-    public void setLotsOfStudents() {
-        for (int i = 0; i < listOfInitialStudents.size(); i++) {
-            university.setStudent(listOfInitialStudents.get(i));
-        }
+    public void setStudents(){
+        university.setStudent(newStudent1);
+        university.setStudent(newStudent2);
+        university.setStudent(newStudent3);
+        university.setStudent(newStudent4);
+        university.setStudent(newStudent5);
+        university.setStudent(newStudent6);
+        university.setStudent(newStudent7);
+        university.setStudent(newStudent8);
+        university.setStudent(newStudent9);
+        university.setStudent(newStudent10);
     }
-//
-//    //Teachers Initialization
-//
-//    private Teacher newTeacher1 = new Teacher("Monica Trujillo", "full-time", 9, 25);
-//    private Teacher newTeacher2 = new Teacher("Enrique Chaux", "part-time", 10, 25);
-//    private Teacher newTeacher3 = new Teacher("Camilo Arias", "part-time", 4, 25);
-//    private Teacher newTeacher4 = new Teacher("Fernando Cardenas", "full-time", 13, 25);
-//
-//    private ArrayList<Teacher> listOfInitialTeachers = new ArrayList<Teacher>(){{
-//        listOfInitialTeachers.add(newTeacher1);
-//        listOfInitialTeachers.add(newTeacher2);
-//        listOfInitialTeachers.add(newTeacher3);
-//        listOfInitialTeachers.add(newTeacher4);
-//        }};
-//
-//    public void setLotsOfTeachers() {
-//        for (int i = 0; i < listOfInitialTeachers.size(); i++) {
-//            university.setTeacher(listOfInitialTeachers.get(i));
-//        }
-//    }
-//
-//    // Courses Initialization
-//
-//    private ArrayList<Student> listOfInitialStudentsInTheCourses1 = new ArrayList<Student>(){{
-//        listOfInitialStudents.add(newStudent1);
-//        listOfInitialStudents.add(newStudent2);
-//        listOfInitialStudents.add(newStudent3);
-//        listOfInitialStudents.add(newStudent4);
-//        listOfInitialStudents.add(newStudent5);
-//    }};
-//    private ArrayList<Student> listOfInitialStudentsInTheCourses2 = new ArrayList<Student>(){{
-//
-//        listOfInitialStudents.add(newStudent6);
-//        listOfInitialStudents.add(newStudent7);
-//        listOfInitialStudents.add(newStudent8);
-//        listOfInitialStudents.add(newStudent9);
-//        listOfInitialStudents.add(newStudent10);
-//    }};
-//    private ArrayList<Student> listOfInitialStudentsInTheCourses3 = new ArrayList<Student>(){{
-//        listOfInitialStudents.add(newStudent1);
-//        listOfInitialStudents.add(newStudent3);
-//        listOfInitialStudents.add(newStudent5);
-//        listOfInitialStudents.add(newStudent7);
-//        listOfInitialStudents.add(newStudent9);
-//    }};
-//    private ArrayList<Student> listOfInitialStudentsInTheCourses4 = new ArrayList<Student>(){{
-//        listOfInitialStudents.add(newStudent2);
-//        listOfInitialStudents.add(newStudent4);
-//        listOfInitialStudents.add(newStudent6);
-//        listOfInitialStudents.add(newStudent8);
-//        listOfInitialStudents.add(newStudent10);
-//    }};
-//
-//
-//    private Course newCourse1 = new Course("Programming", "C-1", "Enrique Chaux", listOfInitialStudentsInTheCourses1);
-//    private Course newCourse2 = new Course("Math", "C-3", "Camilo Arias", listOfInitialStudentsInTheCourses2);
-//    private Course newCourse3 = new Course("Research", "C-6", "Fernando Cardenas", listOfInitialStudentsInTheCourses3);
-//    private Course newCourse4 = new Course("Social Psychology (Experimental) ", "C-9", "Monica Trujillo", listOfInitialStudentsInTheCourses4);
-//
-//    private ArrayList<Course> listOfInitialCourses= new ArrayList<Course>(){{
-//        listOfInitialCourses.add(newCourse1);
-//        listOfInitialCourses.add(newCourse2);
-//        listOfInitialCourses.add(newCourse3);
-//        listOfInitialCourses.add(newCourse4);
-//
-//    }};
-//
-//    public void setLotsOfCourses() {
-//        for (int i = 0; i < listOfInitialCourses.size(); i++) {
-//            university.setCourse(listOfInitialCourses.get(i));
-//        }
-//    }
 
 
+    //Teachers Initialization
+
+    private Teacher newTeacher1 = new Teacher("Monica Trujillo", "full-time", 9, 25);
+    private Teacher newTeacher2 = new Teacher("Enrique Chaux", "part-time", 10, 25);
+    private Teacher newTeacher3 = new Teacher("Camilo Arias", "part-time", 4, 25);
+    private Teacher newTeacher4 = new Teacher("Fernando Cardenas", "full-time", 13, 25);
+
+
+    public void setLotsOfTeachers() {
+        university.setTeacher(newTeacher1);
+        university.setTeacher(newTeacher2);
+        university.setTeacher(newTeacher3);
+        university.setTeacher(newTeacher4);
+    }
+
+    // Courses Initialization
+
+    private ArrayList<Student> listOfInitialStudentsInTheCourses1 = new ArrayList<Student>();
+    {
+        listOfInitialStudentsInTheCourses1.add(newStudent1);
+        listOfInitialStudentsInTheCourses1.add(newStudent2);
+        listOfInitialStudentsInTheCourses1.add(newStudent3);
+        listOfInitialStudentsInTheCourses1.add(newStudent4);
+        listOfInitialStudentsInTheCourses1.add(newStudent5);
+    };
+    private ArrayList<Student> listOfInitialStudentsInTheCourses2 = new ArrayList<Student>();
+    {
+        listOfInitialStudentsInTheCourses2.add(newStudent6);
+        listOfInitialStudentsInTheCourses2.add(newStudent7);
+        listOfInitialStudentsInTheCourses2.add(newStudent8);
+        listOfInitialStudentsInTheCourses2.add(newStudent9);
+        listOfInitialStudentsInTheCourses2.add(newStudent10);
+    };
+    private ArrayList<Student> listOfInitialStudentsInTheCourses3 = new ArrayList<Student>();
+    {
+        listOfInitialStudentsInTheCourses3.add(newStudent1);
+        listOfInitialStudentsInTheCourses3.add(newStudent3);
+        listOfInitialStudentsInTheCourses3.add(newStudent5);
+        listOfInitialStudentsInTheCourses3.add(newStudent7);
+        listOfInitialStudentsInTheCourses3.add(newStudent9);
+    };
+    private ArrayList<Student> listOfInitialStudentsInTheCourses4 = new ArrayList<Student>();
+    {
+        listOfInitialStudentsInTheCourses4.add(newStudent2);
+        listOfInitialStudentsInTheCourses4.add(newStudent4);
+        listOfInitialStudentsInTheCourses4.add(newStudent6);
+        listOfInitialStudentsInTheCourses4.add(newStudent8);
+        listOfInitialStudentsInTheCourses4.add(newStudent10);
+    };
+
+
+    private Course newCourse1 = new Course("Programming", "C-1", "Enrique Chaux", listOfInitialStudentsInTheCourses1);
+    private Course newCourse2 = new Course("Math", "C-3", "Camilo Arias", listOfInitialStudentsInTheCourses2);
+    private Course newCourse3 = new Course("Research", "C-6", "Fernando Cardenas", listOfInitialStudentsInTheCourses3);
+    private Course newCourse4 = new Course("Social Psychology (Experimental) ", "C-9", "Monica Trujillo", listOfInitialStudentsInTheCourses4);
+
+
+    public void setLotsOfCourses() {
+        university.setCourse(newCourse1);
+        university.setCourse(newCourse2);
+        university.setCourse(newCourse3);
+        university.setCourse(newCourse4);
+    }
 }

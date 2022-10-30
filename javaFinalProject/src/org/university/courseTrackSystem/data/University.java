@@ -1,6 +1,6 @@
 package org.university.courseTrackSystem.data;
-
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class University {
 
@@ -39,8 +39,6 @@ public class University {
             return allTeachersInformation;
         }
 
-
-
 //setters
     public void setStudent(Student student){
         this.listOfStudents.add(student);
@@ -52,9 +50,40 @@ public class University {
         this.listOfCourses.add(course);
     }
 
-//    public String createStudentAndAddThemToAClass(String name, int age, String courseName){
-//        Student newStudent = new Student(name, age);
-//
-//
-//    }
+    public ArrayList<String> returnAllCourses (){
+        ArrayList<String> Courses = new ArrayList<String>();
+        for (int i = 0; i < listOfCourses.size(); i++) {
+             Courses.add(listOfCourses.get(i).getCourseName());
+        }
+        return Courses;
+    };
+
+    public Course getCourseByItsIndexInTheList(int indexPosition){
+        return listOfCourses.get(indexPosition);
+    }
+
+    public String createStudentAndAddThemToAClass(String name, int age, String courseName){
+        Student newStudent = new Student(name, age);
+
+        for (int i = 0; i < listOfCourses.size(); i++) {
+            if (Objects.equals(listOfCourses.get(i).getCourseName(), courseName)){
+                listOfCourses.get(i).setOneStudentInTheCourse(newStudent);
+                return "Student added successfully";
+            }
+        }
+        return "The course provided does not exist.";
+    };
+
+
+    public ArrayList<String> getStudentListOfCourses( Student student ){
+        ArrayList<String> courses = new ArrayList<String >();
+
+        for (int i = 0; i < listOfCourses.size(); i++) {
+            if (listOfCourses.get(i).getListOfStudentsInTheCourse().contains(student)){
+                courses.add(listOfCourses.get(i).getCourseName());
+            }
+        }
+        return courses;
+    }
+
 }
