@@ -15,6 +15,33 @@ public class Course {
         this.teacher = teacher;
         this.listOfStudentsInTheCourse = listOfStudentsInTheCourse;
     }
+
+    //getters
+
+
+    public String getCourseName() {
+        return this.courseName;
+    }
+
+    public String getAssignedClassroom() {
+        return this.assignedClassroom;
+    }
+
+    public String getTeacher() {
+        return this.teacher;
+    }
+    public ArrayList<Student> getListOfStudentsInTheCourse(){
+        return this.listOfStudentsInTheCourse;
+    }
+    public String  getNameOfStudentsInTheCourse(int index){
+        return this.listOfStudentsInTheCourse.get(index).getName();
+    }
+    //setters
+
+
+    public void setOneStudentInTheCourse(Student newStudent) {
+        this.listOfStudentsInTheCourse.add(newStudent);
+    }
 }
 
 
