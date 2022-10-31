@@ -6,8 +6,9 @@ public class Course {
 
     private String courseName;
     private String assignedClassroom;
-    private ArrayList<Student> listOfStudentsInTheCourse;
     private String teacherName;
+    private ArrayList<Student> listOfStudentsInTheCourse;
+
 
     public Course(String courseName, String assignedClassroom, String teacherName, ArrayList<Student> listOfStudentsInTheCourse) {
         this.courseName = courseName;
@@ -37,7 +38,7 @@ public class Course {
 
 
     //setters
-    public void setOneStudentInTheCourse(Student newStudent) {
+    public void addOneStudentToTheCourse(Student newStudent) {
         this.listOfStudentsInTheCourse.add(newStudent);
     }
 
