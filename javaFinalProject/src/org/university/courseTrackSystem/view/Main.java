@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         University university = new University("The University");
-        System.out.println("Welcome to The University!");
+        System.out.println(" Welcome to The University! ");
 
         DataInitializer dataInitializer = new DataInitializer(university);
             dataInitializer.setStudents();
@@ -19,12 +19,14 @@ public class Main {
         int option;
 
         do {
-            System.out.println("Select an option:");
-            System.out.println("1. Print all the teachers data.");
-            System.out.println("2. Print all the courses.");
-            System.out.println("3. Create a new student and add it to an existing course.");
-            System.out.println("4. Create a new course with teacher, students and more information.");
-            System.out.println("5. List all the courses of a single student.");
+            System.out.println(" ");
+            System.out.println("|||||||||||||||||||| Select an option: |||||||||||||||||||");
+            System.out.println(" ");
+            System.out.println("  1. Print all the teachers data.");
+            System.out.println("  2. Print all the courses and its details.");
+            System.out.println("  3. Create a new student and add it to an existing course.");
+            System.out.println("  4. Create a new course with teacher, students and more information.");
+            System.out.println("  5. List all the courses of a single student.");
 
             Scanner myScanner = new Scanner(System.in);
             option = myScanner.nextInt();
@@ -55,15 +57,21 @@ public class Main {
     }
 //Case 1
     private static void listAllTeachers(University university) {
+        System.out.println("  ");
+        System.out.println("These are the current teachers at the university:");
         for (int i = 0; i < university.getListOfTeachersToPrint().size(); i++) {
-            System.out.println(university.getListOfTeachersToPrint().get(i));
+            System.out.println("  " + university.getListOfTeachersToPrint().get(i));
         }
+        System.out.println("  ");
     }
 //Case 2
 
     private static void printAllCoursesAndShowMenuToPrintCourseDetails(University university) {
         ArrayList<String> allCourses;
         allCourses = university.returnAllCourses();
+        System.out.println("  ");
+        System.out.println(" These are all the available courses: ");
+        System.out.println("  ");
         for (int i = 0; i < allCourses.size(); i++) {
             System.out.println(i + " " + allCourses.get(i));
         }
@@ -74,17 +82,19 @@ public class Main {
 
         Course courseSelected = university.getCourseByItsIndexInTheList(coursesMenuOption);
 
-        System.out.println("Name " + courseSelected.getCourseName() + "Classroom " + courseSelected.getAssignedClassroom()
-                + "Teacher " + courseSelected.getTeacherName());
+        System.out.println(" This is the information about the course:");
+
+        System.out.println("   Name: " + courseSelected.getCourseName() + "   Classroom: " + courseSelected.getAssignedClassroom()
+                + "   Teacher: " + courseSelected.getTeacherName());
 
         ArrayList<String> students = new ArrayList<String>();
 
         for (int z = 0; z < courseSelected.getListOfStudentsInTheCourse().size(); z++) {
             students.add(courseSelected.getNameOfStudentsInTheCourse(z));
         }
-
+        System.out.println(" These are all the students in the course:");
         for (int x = 0; x < students.size(); x++) {
-            System.out.println(students.get(x));
+            System.out.println("   " + students.get(x));
         }
     }
     //Case 3
@@ -100,8 +110,8 @@ public class Main {
             int studentAge = myScanner.nextInt();
             myScanner.reset();
 
-            System.out.println("Take a look at the list and write the name of the course the student needs: ");
-
+            System.out.println("Write the number of the course that the student needs to be in: ");
+            System.out.println("  ");
             ArrayList<String> allCourses;
             allCourses = university.returnAllCourses();
             for (int i = 0; i < allCourses.size(); i++) {
@@ -114,25 +124,25 @@ public class Main {
 
             String result = university.createStudentAndAddThemToAClass(studentName, studentAge, courseName);
 
-            System.out.println(result);
+            System.out.println("********************  " + result + "  ********************");
         }
 
         //Case 4
 
         private static void createClassAndAddRelevantDataToIt (University university){
             Scanner myScanner = new Scanner(System.in);
-            System.out.println("Write the name of the new course: ");
+            System.out.println(" Write the name of the new course: ");
             String courseName = myScanner.next();
             myScanner.reset();
 
-            System.out.println("Write the name of the classroom: ");
+            System.out.println(" Write the name of the classroom: ");
             String classroom = myScanner.next();
             myScanner.reset();
 
-            System.out.println("Write the number of the teacher for this course: ");
+            System.out.println(" Send the number of the teacher for this course: ");
 
             for (int i = 0; i < university.getListOfTeachersToPrint().size(); i++) {
-                System.out.println(i + " " + university.getListOfTeachersToPrint().get(i));
+                System.out.println( "    " + i + " " + university.getListOfTeachersToPrint().get(i));
             }
             int courseTeacherIndex = myScanner.nextInt();
             myScanner.reset();
@@ -142,41 +152,22 @@ public class Main {
             ArrayList<Student> students;
             students = university.getListOfStudents();
 
+            System.out.println("  ");
             for (int i = 0; i < students.size(); i++) {
                 System.out.println(i + " " + students.get(i).getName());
             }
+            System.out.println("  ");
             students = selectedStudentsForTheNewCourse(university, students.size());
 
             String createdOrNot = university.createCourseWithNewAndExistentData(courseName, classroom, teacher.getName(), students);
             if (Objects.equals(createdOrNot, "Course successfully created.")){
-                System.out.println("Course successfully created.");
+                System.out.println("******************** Course successfully created. ********************");
             }
         }
 
-        //Case 5
-        private static void printAllCoursesOfAStudent (University university){
-            Scanner myScanner = new Scanner(System.in);
 
-            ArrayList<Student> students;
-            ArrayList<String> courses;
-            students = university.getListOfStudents();
 
-            for (int i = 0; i < students.size(); i++) {
-                System.out.println(i + " " + students.get(i).getName());
-            }
-            System.out.println("Enter the student number from this list to see their courses:");
-            int studentInt = myScanner.nextInt();
-            myScanner.reset();
-
-            Student student = students.get(studentInt);
-
-            courses = university.getStudentListOfCourses(student);
-
-            for (int i = 0; i < courses.size(); i++) {
-                System.out.println(courses.get(i));
-            }
-        }
-
+//Case 4 helper
         private static ArrayList<Student> selectedStudentsForTheNewCourse(University university, int studentsSize){
 
             Scanner myScanner = new Scanner(System.in);
@@ -193,13 +184,19 @@ public class Main {
                         int studentInt = myScanner.nextInt();
                         myScanner.reset();
 
+                        if (listOfStudentIndexes.contains(studentInt)){
+                            System.out.println(" The student is already in the course. ");
+
+                            break;
+                        }
                         if (studentInt == 999 || studentInt <= 0) {
                             option = 3;
                             break;
                         }
                         if ( studentInt <= studentsSize - 1){
                             listOfStudentIndexes.add(studentInt);
-                            System.out.println("Student " + studentInt + " added to the course.");
+                            System.out.println("   Student " + studentInt + " added to the course.");
+                            System.out.println("  ");
                         } else {
                             System.out.println("Student doesn't exist.");
                         }
@@ -219,6 +216,35 @@ public class Main {
                 for (int i = 0; i < listOfStudentIndexes.size(); i++) {
                     students.add(university.getStudentByIndex(listOfStudentIndexes.get(i)));
                 }
-
             return students;
-}}
+    }
+
+    //Case 5
+    private static void printAllCoursesOfAStudent (University university){
+        Scanner myScanner = new Scanner(System.in);
+
+        ArrayList<Student> students;
+        ArrayList<String> courses;
+        students = university.getListOfStudents();
+
+        System.out.println(" Student list ");
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println( "    " + i + " " + students.get(i).getName());
+        }
+        System.out.println("  ");
+        System.out.println("Enter the student number from this list to see their courses:");
+        System.out.println("  ");
+        int studentInt = myScanner.nextInt();
+        myScanner.reset();
+
+        Student student = students.get(studentInt);
+
+        courses = university.getStudentListOfCourses(student);
+        System.out.println("These are the courses in which " + student.getName() + " is enrolled.");
+        System.out.println("  ");
+        for (int i = 0; i < courses.size(); i++) {
+            System.out.println(" - " + courses.get(i));
+        }
+    }
+
+}

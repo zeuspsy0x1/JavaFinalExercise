@@ -30,11 +30,12 @@ public class University {
             ArrayList<String> allTeachersInformation = new ArrayList<String>();
 
             for (int i = 0; i < allTeachers.size(); i++) {
-                allTeachersInformation.add("Account Id: " + allTeachers.get(i).getId() +
-                        "  Name: " + allTeachers.get(i).getName() +
+                allTeachersInformation.add(
+                        "Name: " + allTeachers.get(i).getName() +
                         "  Contract Type: " + allTeachers.get(i).getContractType() +
                         "  Monthly salary: " + allTeachers.get(i).getMonthlySalary() +
-                        "  Experience Years: " + allTeachers.get(i).getExperienceYears());
+                        "  Experience Years: " + allTeachers.get(i).getExperienceYears() +
+                                "  Id: " + allTeachers.get(i).getId());
             }
             return allTeachersInformation;
     }
@@ -68,7 +69,6 @@ public class University {
 
     public String createStudentAndAddThemToAClass(String name, int age, String courseName){
         Student newStudent = new Student(name, age);
-
         listOfStudents.add(newStudent);
 
         for (int i = 0; i < listOfCourses.size(); i++) {
