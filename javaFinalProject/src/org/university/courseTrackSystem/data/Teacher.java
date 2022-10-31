@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Teacher extends Person {
 //attributes
     private String contractType;
-    private double monthlySalary;
     private int experienceYears;
     private double baseHourlySalary;
+    private double monthlySalary;
 //constructor
     public Teacher(String name, String contractType, int experienceYears,  double baseHourlySalary) {
         super(name);
@@ -23,15 +23,6 @@ public class Teacher extends Person {
         }
     }
 //getters
-
-    public double getTeacherId() {
-        return this.getId();
-    }
-
-    public String getTeacherName() {
-        return this.getName();
-    }
-
     public String getContractType() {
         return this.contractType;
     }
@@ -44,9 +35,5 @@ public class Teacher extends Person {
         return this.experienceYears;
     }
 
-    //setters
-    public void setContractType(String contractType) {
-        this.contractType = contractType;
-    }
 
 }

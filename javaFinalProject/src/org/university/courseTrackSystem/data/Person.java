@@ -16,11 +16,11 @@ public class Person {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getId() {
         return this.id;
     }
+
+    // public void setName(String name) {
+    //        this.name = name;
+    //    }
 }

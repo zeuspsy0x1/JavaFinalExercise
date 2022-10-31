@@ -22,9 +22,20 @@ public class University {
     public ArrayList<Teacher> getListOfTeachers() {
         return this.listOfTeachers;
     }
-    public ArrayList<Course> getListOfCourses() {
-        return this.listOfCourses;
+    public Student getStudentByIndex( int index){
+        return listOfStudents.get(index);
     }
+    public Course getCourseByItsIndexInTheList(int indexPosition){
+        return listOfCourses.get(indexPosition);
+    }
+    public ArrayList<String> getAllCourses(){
+        ArrayList<String> Courses = new ArrayList<String>();
+        for (int i = 0; i < listOfCourses.size(); i++) {
+            Courses.add(listOfCourses.get(i).getCourseName());
+        }
+        return Courses;
+    };
+
     public ArrayList<String> getListOfTeachersToPrint(){
             ArrayList<Teacher> allTeachers = getListOfTeachers();
             ArrayList<String> allTeachersInformation = new ArrayList<String>();
@@ -40,47 +51,6 @@ public class University {
             return allTeachersInformation;
     }
 
-    public Student getStudentByIndex( int index){
-        return listOfStudents.get(index);
-    }
-
-//setters
-    public void setStudent(Student student){
-        this.listOfStudents.add(student);
-    }
-    public void setTeacher(Teacher teacher) {
-        this.listOfTeachers.add(teacher);
-    }
-    public void setCourse(Course course) {
-        this.listOfCourses.add(course);
-    }
-
-    public ArrayList<String> returnAllCourses (){
-        ArrayList<String> Courses = new ArrayList<String>();
-        for (int i = 0; i < listOfCourses.size(); i++) {
-             Courses.add(listOfCourses.get(i).getCourseName());
-        }
-        return Courses;
-    };
-
-    public Course getCourseByItsIndexInTheList(int indexPosition){
-        return listOfCourses.get(indexPosition);
-    }
-
-    public String createStudentAndAddThemToAClass(String name, int age, String courseName){
-        Student newStudent = new Student(name, age);
-        listOfStudents.add(newStudent);
-
-        for (int i = 0; i < listOfCourses.size(); i++) {
-            if (Objects.equals(listOfCourses.get(i).getCourseName(), courseName)){
-                listOfCourses.get(i).setOneStudentInTheCourse(newStudent);
-                return "Student added successfully";
-            }
-        }
-        return "The course provided does not exist, but the student was created.";
-    };
-
-
     public ArrayList<String> getStudentListOfCourses( Student student ){
         ArrayList<String> courses = new ArrayList<String >();
 
@@ -92,14 +62,45 @@ public class University {
         return courses;
     }
 
+    public ArrayList<Person> getAllThePeople(){
+        ArrayList<Person> allThePeople = new ArrayList<Person>();
+
+        allThePeople.addAll(listOfTeachers);
+        allThePeople.addAll(listOfStudents);
+
+        return  allThePeople;
+    }
+
+//setters
+    public void setStudent(Student student){
+        this.listOfStudents.add(student);
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.listOfTeachers.add(teacher);
+    }
+    public void setCourse(Course course) {
+        this.listOfCourses.add(course);
+    }
+
+//creators
+    public String createStudentAndAddThemToAClass(String name, int age, String courseName){
+        Student newStudent = new Student(name, age);
+        listOfStudents.add(newStudent);
+
+        for (int i = 0; i < listOfCourses.size(); i++) {
+            if (Objects.equals(listOfCourses.get(i).getCourseName(), courseName)){
+                listOfCourses.get(i).addOneStudentToTheCourse(newStudent);
+                return "Student added successfully";
+            }
+        }
+        return "The course provided does not exist, but the student was created.";
+    };
+
     public String createCourseWithNewAndExistentData (String courseName, String assignedClassroom, String teacher, ArrayList<Student> listOfStudents){
         Course newCourse = new Course(courseName, assignedClassroom, teacher, listOfStudents);
         listOfCourses.add(newCourse);
 
         return "Course successfully created.";
     }
-
-
-
-
 }

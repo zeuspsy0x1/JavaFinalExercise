@@ -27,6 +27,8 @@ public class Main {
             System.out.println("  3. Create a new student and add it to an existing course.");
             System.out.println("  4. Create a new course with teacher, students and more information.");
             System.out.println("  5. List all the courses of a single student.");
+            System.out.println("  6. List all the people in the university.");
+            System.out.println("  7. Exit");
 
             Scanner myScanner = new Scanner(System.in);
             option = myScanner.nextInt();
@@ -48,13 +50,24 @@ public class Main {
                 case 5:
                     printAllCoursesOfAStudent(university);
                     break;
+                case 6:
+                    listAllThePeopleOfTheUniversity(university);
+                    break;
+                case 7:
+                    option = 8;
+                    break;
                 default:
                     System.out.println("Select a correct number.");
                     break;
             }
-        } while ( option != 6 );
+        } while ( option != 8 );
 
     }
+
+
+
+
+
 //Case 1
     private static void listAllTeachers(University university) {
         System.out.println("  ");
@@ -68,7 +81,7 @@ public class Main {
 
     private static void printAllCoursesAndShowMenuToPrintCourseDetails(University university) {
         ArrayList<String> allCourses;
-        allCourses = university.returnAllCourses();
+        allCourses = university.getAllCourses();
         System.out.println("  ");
         System.out.println(" These are all the available courses: ");
         System.out.println("  ");
@@ -113,7 +126,7 @@ public class Main {
             System.out.println("Write the number of the course that the student needs to be in: ");
             System.out.println("  ");
             ArrayList<String> allCourses;
-            allCourses = university.returnAllCourses();
+            allCourses = university.getAllCourses();
             for (int i = 0; i < allCourses.size(); i++) {
                 System.out.println(i + " " + allCourses.get(i));
             }
@@ -246,5 +259,18 @@ public class Main {
             System.out.println(" - " + courses.get(i));
         }
     }
+//Case 6
+        public static void listAllThePeopleOfTheUniversity (University university){
 
+            System.out.println(" This is all the people at the university ");
+            System.out.println("  ");
+            ArrayList<Person>  allThePeople  = university.getAllThePeople();
+
+            for (int i = 0; i < allThePeople.size(); i++) {
+                System.out.println(" Name: " + allThePeople.get(i).getName() +
+                        "           Id " + allThePeople.get(i).getId());
+            }6
+            System.out.println("  ");
+
+        }
 }
