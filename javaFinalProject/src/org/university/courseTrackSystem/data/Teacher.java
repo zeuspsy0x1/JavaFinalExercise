@@ -16,7 +16,7 @@ public class Teacher extends Person {
         this.baseHourlySalary = baseHourlySalary;
 
         if (Objects.equals(contractType,  "full-time")){
-            this.monthlySalary = 4 * ( 40 * baseHourlySalary * (experienceYears * 1.1));
+            this.monthlySalary = 4 * ( 40 * (baseHourlySalary * (experienceYears * 1.1)));
         }
         if (Objects.equals(contractType,  "part-time")){
             this.monthlySalary = 4 * ( 20 * baseHourlySalary);

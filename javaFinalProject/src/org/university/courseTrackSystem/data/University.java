@@ -37,7 +37,11 @@ public class University {
                         "  Experience Years: " + allTeachers.get(i).getExperienceYears());
             }
             return allTeachersInformation;
-        }
+    }
+
+    public Student getStudentByIndex( int index){
+        return listOfStudents.get(index);
+    }
 
 //setters
     public void setStudent(Student student){
@@ -65,13 +69,15 @@ public class University {
     public String createStudentAndAddThemToAClass(String name, int age, String courseName){
         Student newStudent = new Student(name, age);
 
+        listOfStudents.add(newStudent);
+
         for (int i = 0; i < listOfCourses.size(); i++) {
             if (Objects.equals(listOfCourses.get(i).getCourseName(), courseName)){
                 listOfCourses.get(i).setOneStudentInTheCourse(newStudent);
                 return "Student added successfully";
             }
         }
-        return "The course provided does not exist.";
+        return "The course provided does not exist, but the student was created.";
     };
 
 
@@ -85,5 +91,15 @@ public class University {
         }
         return courses;
     }
+
+    public String createCourseWithNewAndExistentData (String courseName, String assignedClassroom, String teacher, ArrayList<Student> listOfStudents){
+        Course newCourse = new Course(courseName, assignedClassroom, teacher, listOfStudents);
+        listOfCourses.add(newCourse);
+
+        return "Course successfully created.";
+    }
+
+
+
 
 }

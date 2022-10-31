@@ -39,10 +39,10 @@ public class DataInitializer {
 
     //Teachers Initialization
 
-    private Teacher newTeacher1 = new Teacher("Monica Trujillo", "full-time", 9, 25);
-    private Teacher newTeacher2 = new Teacher("Enrique Chaux", "part-time", 10, 25);
-    private Teacher newTeacher3 = new Teacher("Camilo Arias", "part-time", 4, 25);
-    private Teacher newTeacher4 = new Teacher("Fernando Cardenas", "full-time", 13, 25);
+    private Teacher newTeacher1 = new Teacher("Monica Trujillo", "full-time", 2, 25);
+    private Teacher newTeacher2 = new Teacher("Enrique Chaux", "part-time", 5, 25);
+    private Teacher newTeacher3 = new Teacher("Camilo Arias", "part-time", 2, 25);
+    private Teacher newTeacher4 = new Teacher("Fernando Cardenas", "full-time", 3, 25);
 
 
     public void setLotsOfTeachers() {

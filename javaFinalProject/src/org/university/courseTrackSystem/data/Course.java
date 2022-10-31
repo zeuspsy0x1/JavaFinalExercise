@@ -7,12 +7,12 @@ public class Course {
     private String courseName;
     private String assignedClassroom;
     private ArrayList<Student> listOfStudentsInTheCourse;
-    private String teacher;
+    private String teacherName;
 
-    public Course(String courseName, String assignedClassroom, String teacher, ArrayList<Student> listOfStudentsInTheCourse) {
+    public Course(String courseName, String assignedClassroom, String teacherName, ArrayList<Student> listOfStudentsInTheCourse) {
         this.courseName = courseName;
         this.assignedClassroom = assignedClassroom;
-        this.teacher = teacher;
+        this.teacherName = teacherName;
         this.listOfStudentsInTheCourse = listOfStudentsInTheCourse;
     }
 
@@ -27,8 +27,8 @@ public class Course {
         return this.assignedClassroom;
     }
 
-    public String getTeacher() {
-        return this.teacher;
+    public String getTeacherName() {
+        return this.teacherName;
     }
     public ArrayList<Student> getListOfStudentsInTheCourse(){
         return this.listOfStudentsInTheCourse;
@@ -42,6 +42,7 @@ public class Course {
     public void setOneStudentInTheCourse(Student newStudent) {
         this.listOfStudentsInTheCourse.add(newStudent);
     }
+
 }
 
 
