@@ -17,8 +17,6 @@ public class Course {
     }
 
     //getters
-
-
     public String getCourseName() {
         return this.courseName;
     }
@@ -36,9 +34,9 @@ public class Course {
     public String  getNameOfStudentsInTheCourse(int index){
         return this.listOfStudentsInTheCourse.get(index).getName();
     }
+
+
     //setters
-
-
     public void setOneStudentInTheCourse(Student newStudent) {
         this.listOfStudentsInTheCourse.add(newStudent);
     }
