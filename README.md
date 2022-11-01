@@ -1,5 +1,7 @@
 # Course tracking app
 
+This is an app to keep track of the courses and people in a university.
+
 In this app you can:
 
 1. Print all the teachers with its data.
