@@ -23,6 +23,9 @@ public class DataInitializer {
     private Student newStudent9 = new Student("Ichika", 19);
     private Student newStudent10 = new Student("Lala", 20);
 
+    /***
+     * Initializes 10 students in the program.
+     */
     public void setStudents(){
         university.setStudent(newStudent1);
         university.setStudent(newStudent2);
@@ -44,7 +47,9 @@ public class DataInitializer {
     private Teacher newTeacher3 = new Teacher("Camilo Arias", "part-time", 2, 25);
     private Teacher newTeacher4 = new Teacher("Fernando Cardenas", "full-time", 3, 25);
 
-
+    /***
+     * Initializes 4 teachers in the program.
+     */
     public void setLotsOfTeachers() {
         university.setTeacher(newTeacher1);
         university.setTeacher(newTeacher2);
@@ -93,7 +98,9 @@ public class DataInitializer {
     private Course newCourse3 = new Course("Research", "C-6", "Fernando Cardenas", listOfInitialStudentsInTheCourses3);
     private Course newCourse4 = new Course("Social Psychology (Experimental) ", "C-9", "Monica Trujillo", listOfInitialStudentsInTheCourses4);
 
-
+    /***
+     * Initializes 4 courses in the program.
+     */
     public void setLotsOfCourses() {
         university.setCourse(newCourse1);
         university.setCourse(newCourse2);

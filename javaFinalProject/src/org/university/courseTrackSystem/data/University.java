@@ -9,6 +9,11 @@ public class University {
     private ArrayList<Teacher> listOfTeachers;
     private ArrayList<Course> listOfCourses;
 
+
+    /**
+     * Creates an instance of a University, it has its name and 3 lists of objects (Student, Teacher, Course).
+     * @param name is the name of the university, and it's not final just in case it needs to change someday.
+     */
     public University(String name){
         this.universityName = name;
         this.listOfStudents = new ArrayList<Student>();
