@@ -3,6 +3,7 @@ import org.university.courseTrackSystem.data.*;
 import org.university.courseTrackSystem.persistence.DataInitializer;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -31,7 +32,12 @@ public class Main {
             System.out.println("  7. Exit");
 
             Scanner myScanner = new Scanner(System.in);
-            option = myScanner.nextInt();
+            try{
+                option = myScanner.nextInt();
+            }catch (InputMismatchException e) {
+                option = -1;
+            }
+
             myScanner.reset();
 
             switch (option){
@@ -45,7 +51,7 @@ public class Main {
                     createStudentAndAddThemToAnExistentClass(university);
                     break;
                 case 4:
-                    createClassAndAddRelevantDataToIt(university);
+                    createCourseAndAddRelevantDataToIt(university);
                     break;
                 case 5:
                     printAllCoursesOfAStudent(university);
@@ -57,15 +63,12 @@ public class Main {
                     option = 8;
                     break;
                 default:
-                    System.out.println("Select a correct number.");
+                    System.out.println( "Error:" + " Select a correct number.");
                     break;
             }
         } while ( option != 8 );
 
     }
-
-
-
 
 
 //Case 1
@@ -83,15 +86,22 @@ public class Main {
         ArrayList<String> allCourses;
         allCourses = university.getAllCourses();
         System.out.println("  ");
-        System.out.println(" These are all the available courses: ");
+        System.out.println(" These are all the available courses, select one by its number: ");
         System.out.println("  ");
         for (int i = 0; i < allCourses.size(); i++) {
             System.out.println(i + " " + allCourses.get(i));
         }
 
         Scanner myScanner = new Scanner(System.in);
-        int coursesMenuOption = myScanner.nextInt();
+        int coursesMenuOption;
+        try{
+            coursesMenuOption = myScanner.nextInt();
+        } catch (InputMismatchException e){
+            coursesMenuOption = -1;
+        }
         myScanner.reset();
+
+        if (coursesMenuOption <= allCourses.size() && coursesMenuOption >= 0){
 
         Course courseSelected = university.getCourseByItsIndexInTheList(coursesMenuOption);
 
@@ -107,9 +117,11 @@ public class Main {
         }
         System.out.println(" These are all the students in the course:");
         for (int x = 0; x < students.size(); x++) {
-            System.out.println("   " + students.get(x));
+            System.out.println("  - " + students.get(x));
         }
-    }
+        }else{
+            System.out.println(" Enter a valid course number next time.");
+        }}
     //Case 3
 
         private static void createStudentAndAddThemToAnExistentClass(University university){
@@ -119,30 +131,59 @@ public class Main {
             String studentName = myScanner.next();
             myScanner.reset();
 
-            System.out.println("Write the age of the student: ");
-            int studentAge = myScanner.nextInt();
-            myScanner.reset();
+            if (studentName.matches(".*[a-z].*")){
 
-            System.out.println("Write the number of the course that the student needs to be in: ");
-            System.out.println("  ");
-            ArrayList<String> allCourses;
-            allCourses = university.getAllCourses();
-            for (int i = 0; i < allCourses.size(); i++) {
-                System.out.println(i + " " + allCourses.get(i));
+                System.out.println("Write the age of the student: ");
+
+                int studentAge = 999;
+
+                try{
+                    studentAge = myScanner.nextInt();
+                }catch (InputMismatchException e){
+                    System.out.println(" The student's age is invalid. ");
+                }
+
+                myScanner.reset();
+
+                if (studentAge > 0 && studentAge <= 120){
+                    System.out.println("Write the number of the course that the student needs to be in: ");
+                    System.out.println("  ");
+                    ArrayList<String> allCourses;
+                    allCourses = university.getAllCourses();
+                    for (int i = 0; i < allCourses.size(); i++) {
+                        System.out.println(i + " " + allCourses.get(i));
+                    }
+                    int courseInt = 999;
+                    try {
+                        courseInt = myScanner.nextInt();
+                    }catch (InputMismatchException e){
+                        System.out.println("Select a correct number for the course next time.");
+                    }
+                    if (courseInt >= 0 && courseInt <= allCourses.size()){
+                        myScanner.reset();
+                        String courseName;
+                        courseName = university.getCourseByItsIndexInTheList(courseInt).getCourseName();
+
+                        String result = university.createStudentAndAddThemToAClass(studentName, studentAge, courseName);
+
+                        System.out.println("********************  " + result + "  ********************");
+                    } else {
+                        System.out.println(" Error: course can't be created with the data that you sent, try again with correct inputs.");
+                    }
+
+                } else {
+                    System.out.println( " Student age should be a number between 1 and 120" );
+                }
+
+            } else {
+                System.out.println("Student name needs to have at least 1 a-z letter.");
             }
-            int courseInt = myScanner.nextInt();
-            myScanner.reset();
-            String courseName;
-            courseName = university.getCourseByItsIndexInTheList(courseInt).getCourseName();
 
-            String result = university.createStudentAndAddThemToAClass(studentName, studentAge, courseName);
-
-            System.out.println("********************  " + result + "  ********************");
         }
 
         //Case 4
 
-        private static void createClassAndAddRelevantDataToIt (University university){
+        private static void createCourseAndAddRelevantDataToIt(University university){
             Scanner myScanner = new Scanner(System.in);
             System.out.println(" Write the name of the new course: ");
             String courseName = myScanner.next();
@@ -157,25 +198,37 @@ public class Main {
             for (int i = 0; i < university.getListOfTeachersToPrint().size(); i++) {
                 System.out.println( "    " + i + " " + university.getListOfTeachersToPrint().get(i));
             }
-            int courseTeacherIndex = myScanner.nextInt();
-            myScanner.reset();
-
-            Teacher teacher = university.getListOfTeachers().get(courseTeacherIndex);
-
-            ArrayList<Student> students;
-            students = university.getListOfStudents();
-
-            System.out.println("  ");
-            for (int i = 0; i < students.size(); i++) {
-                System.out.println(i + " " + students.get(i).getName());
+            int courseTeacherIndex = 999;
+            try{
+                courseTeacherIndex = myScanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Error: enter a valid number according with the available courses.");
             }
-            System.out.println("  ");
-            students = selectedStudentsForTheNewCourse(university, students.size());
 
-            String createdOrNot = university.createCourseWithNewAndExistentData(courseName, classroom, teacher.getName(), students);
-            if (Objects.equals(createdOrNot, "Course successfully created.")){
-                System.out.println("******************** Course successfully created. ********************");
+            if (courseTeacherIndex > 0 && courseTeacherIndex <= university.getListOfTeachersToPrint().size()){
+                myScanner.reset();
+                Teacher teacher = university.getListOfTeachers().get(courseTeacherIndex);
+
+                ArrayList<Student> students;
+                students = university.getListOfStudents();
+
+                System.out.println("  ");
+                for (int i = 0; i < students.size(); i++) {
+                    System.out.println(i + " " + students.get(i).getName());
+                }
+                System.out.println("  ");
+                students = selectedStudentsForTheNewCourse(university, students.size());
+
+                String createdOrNot = university.createCourseWithNewAndExistentData(courseName, classroom, teacher.getName(), students);
+                if (Objects.equals(createdOrNot, "Course successfully created.")){
+                    System.out.println("******************** Course successfully created. ********************");
+                }
+
+            }else {
+                System.out.println(" Error: select a correct number for the teacher next time.");
             }
+
+
         }
 
 
@@ -247,30 +300,42 @@ public class Main {
         System.out.println("  ");
         System.out.println("Enter the student number from this list to see their courses:");
         System.out.println("  ");
-        int studentInt = myScanner.nextInt();
-        myScanner.reset();
 
-        Student student = students.get(studentInt);
-
-        courses = university.getStudentListOfCourses(student);
-        System.out.println("These are the courses in which " + student.getName() + " is enrolled.");
-        System.out.println("  ");
-        for (int i = 0; i < courses.size(); i++) {
-            System.out.println(" - " + courses.get(i));
+        int studentInt = 999;
+        try{
+            studentInt = myScanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println(" Your number didn't match with a student.");
         }
+       if (studentInt >= 0 && studentInt <= students.size()){
+
+           myScanner.reset();
+
+           Student student = students.get(studentInt);
+
+           courses = university.getStudentListOfCourses(student);
+           System.out.println("These are the courses in which " + student.getName() + " is enrolled.");
+           System.out.println("  ");
+           for (int i = 0; i < courses.size(); i++) {
+               System.out.println(" - " + courses.get(i));
+           }
+       } else {
+           System.out.println("Error: make sure the student number is valid.");
+       }
     }
 //Case 6
         public static void listAllThePeopleOfTheUniversity (University university){
 
-            System.out.println(" This is all the people at the university ");
+            System.out.println(" These are all the people at the university: ");
             System.out.println("  ");
             ArrayList<Person>  allThePeople  = university.getAllThePeople();
 
             for (int i = 0; i < allThePeople.size(); i++) {
                 System.out.println(" Name: " + allThePeople.get(i).getName() +
                         "           Id " + allThePeople.get(i).getId());
-            }6
+            }
             System.out.println("  ");
 
         }
 }
+
