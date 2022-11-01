@@ -2,6 +2,7 @@ package org.university.courseTrackSystem.data;
 
 import java.util.Objects;
 
+
 public class Teacher extends Person {
 //attributes
     private String contractType;
@@ -9,6 +10,14 @@ public class Teacher extends Person {
     private double baseHourlySalary;
     private double monthlySalary;
 //constructor
+
+    /***
+     * Creates a new teacher with id (from the class Person) and also with these parameters:
+     * @param name of the teacher, it's a String, and it needs at least 1 letter to be valid.
+     * @param contractType type of employee contract, it can be full-time or part-time.
+     * @param experienceYears years of experience as a teacher.
+     * @param baseHourlySalary salary per hour.
+     */
     public Teacher(String name, String contractType, int experienceYears,  double baseHourlySalary) {
         super(name);
         this.contractType = contractType;
@@ -23,6 +32,8 @@ public class Teacher extends Person {
         }
     }
 //getters
+
+
     public String getContractType() {
         return this.contractType;
     }

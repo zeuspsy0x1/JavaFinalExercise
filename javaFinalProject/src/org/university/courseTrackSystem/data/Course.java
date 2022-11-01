@@ -9,7 +9,13 @@ public class Course {
     private String teacherName;
     private ArrayList<Student> listOfStudentsInTheCourse;
 
-
+    /**
+     * Creates a new course with its own parameters. A course needs:
+     * @param courseName the name of the course.
+     * @param assignedClassroom for the course and it looks like this ["C-6"].
+     * @param teacherName the name of the teacher, it's always a string.
+     * @param listOfStudentsInTheCourse it's a list of Student objects.
+     */
     public Course(String courseName, String assignedClassroom, String teacherName, ArrayList<Student> listOfStudentsInTheCourse) {
         this.courseName = courseName;
         this.assignedClassroom = assignedClassroom;
